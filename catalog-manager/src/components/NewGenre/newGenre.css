@@ -1,0 +1,14 @@
+.new-genre form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid grey; }
+
+.new-genre div {
+  margin: 10px 0px; }
+
+.new-genre label {
+  display: inline-block;
+  width: 50px; }
+
+/*# sourceMappingURL=newGenre.css.map */

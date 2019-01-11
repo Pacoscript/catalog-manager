@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,eAAe;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,cAAc;;AAE1B,cAAc;EACV,MAAM,EAAE,QAAQ;;AAEpB,gBAAgB;EACZ,OAAO,EAAE,YAAY;EACrB,KAAK,EAAE,IAAI",
+"sources": ["newGenre.sass"],
+"names": [],
+"file": "newGenre.css"
+}
