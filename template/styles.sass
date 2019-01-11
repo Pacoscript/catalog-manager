@@ -2,6 +2,7 @@ header
     background-color: #FF6760
     display: flex
     flex-direction: row
+    justify-content: space-between
 
 header .logo
     display: flex
@@ -15,15 +16,70 @@ header .logo
 .menu a
     display: block
     padding: 2em
-    background-color: #FFB3B0
+    background-color: #FF6760
     text-decoration: none
     color: #191c26
 
 .menu a:hover
-    background-color: #CC673B
+    background-color: #DA3320
 	
 .menu ul li ul
     display: none
 
 .menu ul li a:hover + ul, .menu ul li ul:hover
     display: block
+
+.filter
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    padding: 10px 0px
+
+.books
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: right
+    
+.card
+    border: 1px solid grey
+    padding: 0px 10px
+    width: 130px
+    margin: 20px
+
+.card__buttons
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+
+main
+    display: flex
+    justify-content: center
+
+.new-book form
+    display: flex
+    flex-direction: column
+    padding: 20px
+    border: 1px solid grey
+
+.new-book div
+    margin: 10px 0px
+
+.new-book label
+    display: inline-block
+    width: 50px
+
+.new-genre form
+    display: flex
+    flex-direction: column
+    padding: 20px
+    border: 1px solid grey
+
+.new-genre div
+    margin: 10px 0px
+
+.new-genre label
+    display: inline-block
+    width: 50px
+
+    
