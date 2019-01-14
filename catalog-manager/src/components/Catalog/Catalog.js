@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
 import './catalog.css'
+import logic from '../../logic'
+import Book from '../Book/Book'
 
 class Catalog extends Component {
-    state= {error: null}
+    state= {error: null, books: null, genres: null, genre: 'All'}
 
     componentDidMount = () => {
-        console.log('hello')
+        const books = logic.listCatalog(this.state.genre)
+        const genres = logic.listGenres()
+        this.setState({books, genres})
+    }
+
+    handleGenreChange = event => {
+        event.preventDefault()
+        const genre = event.target.value
+        this.setState ({genre})
+        const books = logic.listCatalog(genre)
+        this.setState({books})
     }
 
     render(){
@@ -13,84 +25,24 @@ class Catalog extends Component {
             <section class= 'filter'>
                 <div>
                     <label>Searh by Genre</label>
-                    <select>
-                        <option>fiction</option>
-                        <option>art</option>
-                        <option>drama</option>
+                    <select defaultValue='' onChange={this.handleGenreChange}>
+                        <option value='All'>All</option>
+                        {this.state.genres && this.state.genres.map(genre =>
+                            <option value={genre.name} label={genre.name} />)}
                     </select>
                 </div>
             </section>
 
             <section class='books'>
-                <div class='card'>
-                    <h3>Title1</h3>
-                    <p>Genre: Terror</p>
-                    <p>Prize: 19 euros</p>
-                    <div class='card__buttons'>
-                        <div>
-                            <a href='#'>Edit</a>
-                        </div>
-                        <div>
-                            <a href='#'>Delete</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='card'>
-                    <h3>Title2</h3>
-                    <p>Genre: Drama</p>
-                    <p>Prize: 19 euros</p>
-                    <div class='card__buttons'>
-                        <div>
-                            <a href='#'>Edit</a>
-                        </div>
-                        <div>
-                            <a href='#'>Delete</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='card'>
-                    <h3>Title2</h3>
-                    <p>Genre: Drama</p>
-                    <p>Prize: 19 euros</p>
-                    <div class='card__buttons'>
-                        <div>
-                            <a href='#'>Edit</a>
-                        </div>
-                        <div>
-                            <a href='#'>Delete</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='card'>
-                    <h3>Title2</h3>
-                    <p>Genre: Drama</p>
-                    <p>Prize: 19 euros</p>
-                    <div class='card__buttons'>
-                        <div>
-                            <a href='#'>Edit</a>
-                        </div>
-                        <div>
-                            <a href='#'>Delete</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='card'>
-                    <h3>Title2</h3>
-                    <p>Genre: Drama</p>
-                    <p>Prize: 19 euros</p>
-                    <div class='card__buttons'>
-                        <div>
-                            <a href='#'>Edit</a>
-                        </div>
-                        <div>
-                            <a href='#'>Delete</a>
-                        </div>
-                    </div>
-                </div>
+                {this.state.books && this.state.books.map(book=>
+                <Book
+                    editBook={this.props.editBook}
+                    deleteBook={this.props.deleteBook}
+                    id={book.id}
+                    title={book.title} 
+                    genre={book.genre} 
+                    prize={book.prize}
+                />)}
             </section>
         </main>
     }

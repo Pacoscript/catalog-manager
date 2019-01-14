@@ -1,21 +1,29 @@
 import React, { Component } from 'react'
 import './newGenre.css'
+import logic from '../../logic'
 
 class NewGenre extends Component {
-    state = {error: null}
+    state = {error: null, genre: null}
 
-    componentDidMount = () => {
-        console.log('hello world')
+    handleChangeGenre = (event)=>{
+        const genre = event.target.value
+        this.setState({genre})
+    }
+
+    handleNewGenre = event => {
+        event.preventDefault()
+        logic.createGenre(this.state.genre)
+        this.props.onGoGenres()
     }
 
     render() {
         return <main>
             <div class='new-genre'>
                 <h3>ADD A NEW GENRE</h3>
-                <form>
+                <form onSubmit={this.handleNewGenre}>
                     <div>
                         <label>Genre</label>
-                        <input />
+                        <input onChange={this.handleChangeGenre}/>
                     </div>
                     <div>
                         <input type='submit' value='Create'></input>

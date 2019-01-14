@@ -1,3 +1,7 @@
+.new-genre {
+  max-widht: 400px;
+  margin: auto; }
+
 .new-genre form {
   display: flex;
   flex-direction: column;
