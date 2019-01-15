@@ -6,8 +6,8 @@ const initialData = {
     ],
     
     genres : [
-        {name:'Terror'},
-        {name:'Fiction'}
+        {id: 'genre-1547477992790', name:'Terror'},
+        {id: 'genre-1547478000294', name:'Fiction'}
     ]
 }
 

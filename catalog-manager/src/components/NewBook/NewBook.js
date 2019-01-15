@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Error from '../Error/Error'
 import './newBook.css'
 import logic from '../../logic'
 
@@ -25,17 +26,23 @@ class NewBook extends Component {
         this.setState ({prize})
     }
 
-    handleCreateBook = async (event) => {
-        event.preventDefault()
-        await logic.createBook(this.state.title, this.state.genre, this.state.prize)
-        this.props.onGoCatalog()
+    handleCreateBook = (event) => {
+        try{
+            event.preventDefault()
+            logic.createBook(this.state.title, this.state.genre, this.state.prize)
+            this.props.onGoCatalog()
+        }
+        catch(err){this.setState({ error: err.message })}
         
     }
 
     render() {
+        const error = this.state.error
+
         return <main>
                 <div className='new-book'>
                     <h3>ADD A NEW BOOK</h3>
+                    {error && <Error message={error} />}
                     <form onSubmit={this.handleCreateBook}>
                         <div>
                             <label>Title</label>
@@ -46,7 +53,7 @@ class NewBook extends Component {
                             <select defaultValue='' onChange={this.handleGenreChange}>
                             <option>Genre</option>
                             {this.state.genres && this.state.genres.map(genre =>
-                            <option value={genre.name} label={genre.name} />)}
+                            <option key= {genre.id} value={genre.name} label={genre.name} />)}
                     </select>
                         </div>
                         <div>

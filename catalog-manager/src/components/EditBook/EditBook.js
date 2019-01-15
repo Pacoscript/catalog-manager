@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Error from '../Error/Error'
 import './newBook.css'
 import logic from '../../logic'
 
@@ -29,17 +30,24 @@ class EditBook extends Component {
         this.setState ({prize})
     }
 
-    handleSaveBook = async (event) => {
+    handleSaveBook = (event) => {
         event.preventDefault()
-        await logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
-        this.props.onGoCatalog()
+        try{
+            logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
+            this.props.onGoCatalog()
+        }
+        catch(err){this.setState({ error: err.message })}
+        
         
     }
 
     render() {
+        const error = this.state.error
+
         return <main>
                 <div className='new-book'>
                     <h3>MODIFY BOOK</h3>
+                    {error && <Error message={error} />}
                     <form onSubmit={this.handleSaveBook}>
                         <div>
                             <label>Title</label>

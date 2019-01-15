@@ -255,6 +255,31 @@ describe('logic', () => {
             })
         })
 
+        describe('deleteGenre', () =>{
+            it('should succed on correct data', async () => {
+                const length = logic.genres.length
+                const id = logic.genres[0].id
+                logic.deleteGenre(id)
+                expect(logic.genres.length).to.equal(length-1)
+            })
+
+            it('should fail on undefined id', async () => {
+                expect(() => logic.deleteGenre(undefined)).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on empty id', async () => {
+                expect(() => logic.deleteGenre('')).to.throw(TypeError, 'id is empty or blank')
+            })
+
+            it('should fail on blank id', async () => {
+                expect(() => logic.deleteGenre('    \t\n')).to.throw(TypeError, 'id is empty or blank')
+            })
+
+            it('should fail on non string id', async () => {
+                expect(() => logic.deleteGenre(10)).to.throw(TypeError, '10 is not a string')
+            })
+        })
+
 
     })
 
