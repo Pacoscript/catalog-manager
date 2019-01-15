@@ -9,16 +9,16 @@ function NavBar(props){
         </div>
         <nav className='menu'>
             <ul>
-                <li><a href='#'>Books</a>
+                <li><a href='./'>Books</a>
                     <ul>
-                        <li><a href='#' onClick = {props.onGoViewCatalog}>View</a></li>
-                        <li><a href='#' onClick = {props.onGoNewBook}>Create</a></li>
+                        <li><a href='./' onClick = {props.onGoViewCatalog}>View</a></li>
+                        <li><a href='./' onClick = {props.onGoNewBook}>Create</a></li>
                     </ul>
                 </li>
-                <li><a href='#'>Genres</a>
+                <li><a href='./'>Genres</a>
                     <ul>
-                        <li><a href='#' onClick = {props.onGoViewGenres}>View</a></li>
-                        <li><a href='#' onClick = {props.onGoNewGenre}>Create</a></li>
+                        <li><a href='./' onClick = {props.onGoViewGenres}>View</a></li>
+                        <li><a href='./' onClick = {props.onGoNewGenre}>Create</a></li>
                     </ul>
                 </li>
             </ul>

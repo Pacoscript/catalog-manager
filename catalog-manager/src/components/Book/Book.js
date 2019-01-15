@@ -1,7 +1,7 @@
 import React from 'react' 
 import './book.css'
     function Book (props){
-        return <div class='card'>
+        return <div className='card'>
             <h3>Title: {props.title}</h3>
             <p>Genre: {props.genre}</p>
             <p>Prize: {props.prize} euros</p>

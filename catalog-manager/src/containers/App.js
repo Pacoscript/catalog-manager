@@ -44,9 +44,9 @@ class App extends Component {
     return this.props.history.push('/editBook')
   }
 
-  handleDeleteBook = (id) =>{
-    logic.deleteBook(id)
-    return this.props.history.push('/catalog')
+  handleDeleteBook = async (id) =>{
+      await logic.deleteBook(id)
+      return this.props.history.push('/catalog')
   }
 
   render() {

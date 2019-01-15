@@ -29,9 +29,9 @@ class EditBook extends Component {
         this.setState ({prize})
     }
 
-    handleSaveBook = event => {
+    handleSaveBook = async (event) => {
         event.preventDefault()
-        logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
+        await logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
         this.props.onGoCatalog()
         
     }

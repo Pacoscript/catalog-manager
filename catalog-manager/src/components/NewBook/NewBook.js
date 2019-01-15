@@ -5,8 +5,8 @@ import logic from '../../logic'
 class NewBook extends Component {
     state = {error: null, genres: null, title: null, genre: null, prize: null}
 
-    componentDidMount = () => {
-        const genres = logic.genres
+    componentDidMount = async () => {
+        const genres = await logic.genres
         this.setState ({genres})
     }
 
@@ -25,9 +25,9 @@ class NewBook extends Component {
         this.setState ({prize})
     }
 
-    handleCreateBook = event => {
+    handleCreateBook = async (event) => {
         event.preventDefault()
-        logic.createBook(this.state.title, this.state.genre, this.state.prize)
+        await logic.createBook(this.state.title, this.state.genre, this.state.prize)
         this.props.onGoCatalog()
         
     }

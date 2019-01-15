@@ -10,9 +10,9 @@ class NewGenre extends Component {
         this.setState({genre})
     }
 
-    handleNewGenre = event => {
+    handleNewGenre = async (event) => {
         event.preventDefault()
-        logic.createGenre(this.state.genre)
+        await logic.createGenre(this.state.genre)
         this.props.onGoGenres()
     }
 

@@ -6,23 +6,24 @@ import Book from '../Book/Book'
 class Catalog extends Component {
     state= {error: null, books: null, genres: null, genre: 'All'}
 
-    componentDidMount = () => {
-        const books = logic.listCatalog(this.state.genre)
-        const genres = logic.listGenres()
+    componentDidMount = async () => {
+        const books = await logic.listCatalog(this.state.genre)
+        const genres = await logic.listGenres()
         this.setState({books, genres})
+        
     }
 
-    handleGenreChange = event => {
+    handleGenreChange = async (event) => {
         event.preventDefault()
         const genre = event.target.value
         this.setState ({genre})
-        const books = logic.listCatalog(genre)
+        const books = await logic.listCatalog(genre)
         this.setState({books})
     }
 
     render(){
         return <main>
-            <section class= 'filter'>
+            <section className= 'filter'>
                 <div>
                     <label>Searh by Genre</label>
                     <select defaultValue='' onChange={this.handleGenreChange}>
@@ -33,7 +34,7 @@ class Catalog extends Component {
                 </div>
             </section>
 
-            <section class='books'>
+            <section className='books'>
                 {this.state.books && this.state.books.map(book=>
                 <Book
                     editBook={this.props.editBook}
