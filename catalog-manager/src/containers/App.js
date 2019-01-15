@@ -44,10 +44,16 @@ class App extends Component {
     return this.props.history.push('/editBook')
   }
 
-  handleDeleteBook = async (id) =>{
-      await logic.deleteBook(id)
+  handleDeleteBook = (id) =>{
+      logic.deleteBook(id)
       return this.props.history.push('/catalog')
   }
+
+  handleDeleteGenre = (id) =>{
+    logic.deleteGenre(id)
+    return this.props.history.push('/genres')
+    
+}
 
   render() {
     return (
@@ -78,7 +84,9 @@ class App extends Component {
           onGoCatalog={this.handleGoCatalog} 
           />}/>
 
-        <Route path='/genres' render={() => <Genres />}/>
+        <Route path='/genres' render={() => <Genres
+          deleteGenre = {this.handleDeleteGenre}
+         />}/>
 
         <Route path='/newGenre' render={() => <NewGenre
            onGoGenres={this.handleGoGenres}

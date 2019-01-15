@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import Error from '../Error/Error'
 import './newBook.css'
 import logic from '../../logic'
 
 class EditBook extends Component {
-    state = {error: null, genres: null, id: null, title: null, genre: null, prize: null}
+    state = {error: null, genres: null, id: null, title: '', genre: null, prize: ''}
 
     componentDidMount = () => {
         const genres = logic.genres
@@ -29,17 +30,24 @@ class EditBook extends Component {
         this.setState ({prize})
     }
 
-    handleSaveBook = async (event) => {
+    handleSaveBook = (event) => {
         event.preventDefault()
-        await logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
-        this.props.onGoCatalog()
+        try{
+            logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
+            this.props.onGoCatalog()
+        }
+        catch(err){this.setState({ error: err.message })}
+        
         
     }
 
     render() {
-        return <main>
+        const error = this.state.error
+
+        return <div className='main'>
                 <div className='new-book'>
                     <h3>MODIFY BOOK</h3>
+                    {error && <Error message={error} />}
                     <form onSubmit={this.handleSaveBook}>
                         <div>
                             <label>Title</label>
@@ -48,9 +56,9 @@ class EditBook extends Component {
                         <div>
                             <label>Genre</label>
                             <select defaultValue='' onChange={this.handleGenreChange}>
-                            <option>{this.state.genre}</option>
+                            <option>Genres</option>
                             {this.state.genres && this.state.genres.map(genre =>
-                            <option value={genre.name} label={genre.name} />)}
+                            <option key={genre.id} value={genre.name} label={genre.name} />)}
                     </select>
                         </div>
                         <div>
@@ -62,7 +70,7 @@ class EditBook extends Component {
                         </div>
                     </form>
                 </div>     
-            </main>
+            </div>
     
     }
 }

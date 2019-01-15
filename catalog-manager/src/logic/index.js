@@ -55,7 +55,16 @@ const logic = {
     createGenre(genre){
         validate([{ key: 'genre', value: genre, type: String, optional: false }])
         logic.delay()
-        logic.genres.push({name:genre})
+        logic.genres.push({id: ('genre-'+Date.now()), name:genre})
+    },
+
+    deleteGenre(id){
+        validate([{ key: 'id', value: id, type: String, optional: false }])
+        logic.delay()
+        const index = logic.genres.findIndex((genre)=>{
+            return genre.id === id
+        })
+        logic.genres.splice(index,1)
     },
 
     searchById(id){

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Error from '../Error/Error'
 import './newGenre.css'
 import logic from '../../logic'
 
@@ -11,15 +12,21 @@ class NewGenre extends Component {
     }
 
     handleNewGenre = async (event) => {
-        event.preventDefault()
-        await logic.createGenre(this.state.genre)
-        this.props.onGoGenres()
+        try{
+            event.preventDefault()
+            await logic.createGenre(this.state.genre)
+            this.props.onGoGenres()
+        }
+        catch(err){this.setState({ error: err.message })}
     }
 
     render() {
-        return <main>
-            <div class='new-genre'>
+        const error = this.state.error
+
+        return <div className='main'>
+            <div className='new-genre'>
                 <h3>ADD A NEW GENRE</h3>
+                {error && <Error message={error} />}
                 <form onSubmit={this.handleNewGenre}>
                     <div>
                         <label>Genre</label>
@@ -30,7 +37,7 @@ class NewGenre extends Component {
                     </div>
                 </form>      
             </div>
-        </main>
+        </div>
     
     }
 }

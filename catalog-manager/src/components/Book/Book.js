@@ -5,7 +5,7 @@ import './book.css'
             <h3>Title: {props.title}</h3>
             <p>Genre: {props.genre}</p>
             <p>Prize: {props.prize} euros</p>
-            <div class='card__buttons'>
+            <div className='card__buttons'>
                 <div>
                     <button onClick={() => props.editBook(props.id)}>Edit</button>
                 </div>
