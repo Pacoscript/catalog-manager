@@ -23,7 +23,7 @@ class NewGenre extends Component {
     render() {
         const error = this.state.error
 
-        return <main>
+        return <div className='main'>
             <div className='new-genre'>
                 <h3>ADD A NEW GENRE</h3>
                 {error && <Error message={error} />}
@@ -37,7 +37,7 @@ class NewGenre extends Component {
                     </div>
                 </form>      
             </div>
-        </main>
+        </div>
     
     }
 }

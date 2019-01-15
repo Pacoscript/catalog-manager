@@ -4,7 +4,7 @@ import './newBook.css'
 import logic from '../../logic'
 
 class EditBook extends Component {
-    state = {error: null, genres: null, id: null, title: null, genre: null, prize: null}
+    state = {error: null, genres: null, id: null, title: '', genre: null, prize: ''}
 
     componentDidMount = () => {
         const genres = logic.genres
@@ -44,7 +44,7 @@ class EditBook extends Component {
     render() {
         const error = this.state.error
 
-        return <main>
+        return <div className='main'>
                 <div className='new-book'>
                     <h3>MODIFY BOOK</h3>
                     {error && <Error message={error} />}
@@ -56,9 +56,9 @@ class EditBook extends Component {
                         <div>
                             <label>Genre</label>
                             <select defaultValue='' onChange={this.handleGenreChange}>
-                            <option>{this.state.genre}</option>
+                            <option>Genres</option>
                             {this.state.genres && this.state.genres.map(genre =>
-                            <option value={genre.name} label={genre.name} />)}
+                            <option key={genre.id} value={genre.name} label={genre.name} />)}
                     </select>
                         </div>
                         <div>
@@ -70,7 +70,7 @@ class EditBook extends Component {
                         </div>
                     </form>
                 </div>     
-            </main>
+            </div>
     
     }
 }

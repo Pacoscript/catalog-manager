@@ -39,7 +39,7 @@ class NewBook extends Component {
     render() {
         const error = this.state.error
 
-        return <main>
+        return <div className='main'>
                 <div className='new-book'>
                     <h3>ADD A NEW BOOK</h3>
                     {error && <Error message={error} />}
@@ -65,7 +65,7 @@ class NewBook extends Component {
                         </div>
                     </form>
                 </div>     
-            </main>
+            </div>
     
     }
 }

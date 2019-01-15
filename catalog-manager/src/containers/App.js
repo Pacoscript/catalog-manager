@@ -85,7 +85,7 @@ class App extends Component {
           />}/>
 
         <Route path='/genres' render={() => <Genres
-        deleteGenre = {this.handleDeleteGenre}
+          deleteGenre = {this.handleDeleteGenre}
          />}/>
 
         <Route path='/newGenre' render={() => <NewGenre

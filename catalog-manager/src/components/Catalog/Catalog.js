@@ -22,7 +22,7 @@ class Catalog extends Component {
     }
 
     render(){
-        return <main>
+        return <div className='main'>
             <section className= 'filter'>
                 <div>
                     <label>Searh by Genre</label>
@@ -46,7 +46,7 @@ class Catalog extends Component {
                     prize={book.prize}
                 />)}
             </section>
-        </main>
+        </div>
     }
 
 }
