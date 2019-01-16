@@ -30,7 +30,7 @@ class NewBook extends Component {
         try{
             event.preventDefault()
             logic.createBook(this.state.title, this.state.genre, this.state.prize)
-            this.props.onGoCatalog()
+            this.props.onGoCatalog(event)
         }
         catch(err){this.setState({ error: err.message })}
         
@@ -39,17 +39,16 @@ class NewBook extends Component {
     render() {
         const error = this.state.error
 
-        return <div className='main'>
-                <div className='new-book'>
-                    <h3>ADD A NEW BOOK</h3>
+        return <div className='new-book'>
+                    <h3 className='new-book__title'>ADD A NEW BOOK</h3>
                     {error && <Error message={error} />}
-                    <form onSubmit={this.handleCreateBook}>
+                    <form className='new-book__form'onSubmit={this.handleCreateBook}>
                         <div>
-                            <label>Title</label>
+                            <label className='new-book__label'>Title</label>
                             <input onChange={this.handleTitleChange} />
                         </div>
                         <div>
-                            <label>Genre</label>
+                            <label className='new-book__label'>Genre</label>
                             <select defaultValue='' onChange={this.handleGenreChange}>
                             <option>Genre</option>
                             {this.state.genres && this.state.genres.map(genre =>
@@ -57,15 +56,15 @@ class NewBook extends Component {
                     </select>
                         </div>
                         <div>
-                            <label>Prize</label>
+                            <label className='new-book__label'>Prize</label>
                             <input onChange={this.handlePrizeChange} /> 
                         </div>
                         <div>
-                            <input type='submit' value='Create'></input>
+                            <button type='submit' value='Create'>Create</button>
                         </div>
                     </form>
                 </div>     
-            </div>
+            
     
     }
 }

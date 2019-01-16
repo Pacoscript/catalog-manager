@@ -23,8 +23,7 @@ class NewGenre extends Component {
     render() {
         const error = this.state.error
 
-        return <div className='main'>
-            <div className='new-genre'>
+        return <div className='new-genre'>
                 <h3>ADD A NEW GENRE</h3>
                 {error && <Error message={error} />}
                 <form onSubmit={this.handleNewGenre}>
@@ -33,12 +32,10 @@ class NewGenre extends Component {
                         <input onChange={this.handleChangeGenre}/>
                     </div>
                     <div>
-                        <input type='submit' value='Create'></input>
+                        <button type='submit' value='Create'>Create</button>
                     </div>
                 </form>      
-            </div>
-        </div>
-    
+            </div>    
     }
 }
 
