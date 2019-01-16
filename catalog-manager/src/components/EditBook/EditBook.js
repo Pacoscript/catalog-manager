@@ -34,7 +34,7 @@ class EditBook extends Component {
         event.preventDefault()
         try{
             logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
-            this.props.onGoCatalog()
+            this.props.onGoCatalog(event)
         }
         catch(err){this.setState({ error: err.message })}
         
