@@ -22,8 +22,8 @@ class Catalog extends Component {
     }
 
     render(){
-        return <div className='main'>
-            <section className= 'filter'>
+        return <div className='catalog'>
+            <section className= 'catalog__filter'>
                 <div>
                     <label>Searh by Genre</label>
                     <select defaultValue='' onChange={this.handleGenreChange}>
@@ -34,7 +34,7 @@ class Catalog extends Component {
                 </div>
             </section>
 
-            <section className='books'>
+            <section className='catalog__books'>
                 {this.state.books && this.state.books.map(book=>
                 <Book
                     key={book.id}

@@ -6,13 +6,15 @@ import Genres from '../components/Genres/Genres'
 import NewGenre from '../components/NewGenre/NewGenre'
 import EditBook from '../components/EditBook/EditBook'
 import { Route, withRouter } from 'react-router-dom'
-import logic from '../logic';
+import logic from '../logic'
+import './app.css'
 
 
 class App extends Component {
   state = {error: null, idEdit: null}
 
-  handleGoCatalog = () => {
+  handleGoCatalog = (event) => {
+    event.preventDefault()
     this.setState({ error: null})
     return this.props.history.push('/catalog')
   }
@@ -41,7 +43,7 @@ class App extends Component {
   handleGoEdit = (id) => {
     const idEdit = id
     this.setState({idEdit})
-    return this.props.history.push('/editBook')
+    return this.props.history.push(`/editBook/${id}`)
   }
 
   handleDeleteBook = (id) =>{
@@ -70,8 +72,8 @@ class App extends Component {
           deleteBook = {this.handleDeleteBook}
         />} />
 
-        <Route path='/editBook' render={() => <EditBook 
-          id={this.state.idEdit}
+        <Route path='/editBook/:id' render={(props) => <EditBook 
+          id={props.match.params.id}
           onGoCatalog={this.handleGoCatalog}
           />}/>
 

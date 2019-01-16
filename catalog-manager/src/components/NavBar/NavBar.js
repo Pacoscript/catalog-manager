@@ -2,12 +2,12 @@ import React from 'react'
 import './navBar.css'
 
 function NavBar(props){
-    return <header>
-        <div className='logo'>
+    return <header className='navbar'>
+        <div className='navbar__logo'>
             <i className='fas fa-book fa-3x' ></i>
-            <h1>BOOKSTORE</h1>
+            <h1 className='navbar__name'>BOOKSTORE</h1>
         </div>
-        <nav className='menu'>
+        <nav className='navbar__menu'>
             <ul>
                 <li><a href='./'>Books</a>
                     <ul>

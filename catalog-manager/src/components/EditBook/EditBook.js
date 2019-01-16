@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Error from '../Error/Error'
-import './newBook.css'
+import './editBook.css'
 import logic from '../../logic'
 
 class EditBook extends Component {
-    state = {error: null, genres: null, id: null, title: '', genre: null, prize: ''}
+    state = {error: null, genres: null, id: this.props.id, title: '', genre: null, prize: ''}
 
     componentDidMount = () => {
         const genres = logic.genres
@@ -34,7 +34,7 @@ class EditBook extends Component {
         event.preventDefault()
         try{
             logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
-            this.props.onGoCatalog()
+            this.props.onGoCatalog(event)
         }
         catch(err){this.setState({ error: err.message })}
         
@@ -44,8 +44,8 @@ class EditBook extends Component {
     render() {
         const error = this.state.error
 
-        return <div className='main'>
-                <div className='new-book'>
+        return <div className='edit-book'>
+                <div className='edit-book__card'>
                     <h3>MODIFY BOOK</h3>
                     {error && <Error message={error} />}
                     <form onSubmit={this.handleSaveBook}>
@@ -66,7 +66,7 @@ class EditBook extends Component {
                             <input onChange={this.handlePrizeChange} value={this.state.prize} /> 
                         </div>
                         <div>
-                            <input type='submit' value='Save Changes'></input>
+                            <button type='submit' value='Save Changes'>Save</button>
                         </div>
                     </form>
                 </div>     
