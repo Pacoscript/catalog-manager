@@ -1,16 +1,27 @@
 import React, { Component } from 'react'
 import './catalog.css'
 import logic from '../../logic'
-import Book from '../Book/Book'
+import Book from '../../components/Book/Book'
 
 class Catalog extends Component {
-    state= {books: null, genres: null, genre: 'All'}
+    state= {books: null, genres: null, genre: 'All', idEdit: null, error: null}
 
     componentDidMount = () => {
         const books = logic.listCatalog(this.state.genre)
         const genres = logic.listGenres()
         this.setState({books, genres})
         
+    }    
+
+    handleGoEdit = (id) => {
+        const idEdit = id
+        this.setState({idEdit})
+        return this.props.history.push(`/editBook/${id}`)
+    }
+
+    handleDeleteBook = (id) =>{
+        logic.deleteBook(id)
+        return this.props.history.push('/catalog')
     }
 
     handleGenreChange = (event) => {
@@ -38,8 +49,8 @@ class Catalog extends Component {
                 {this.state.books && this.state.books.map(book=>
                 <Book
                     key={book.id}
-                    editBook={this.props.editBook}
-                    deleteBook={this.props.deleteBook}
+                    editBook={this.handleGoEdit}
+                    deleteBook={this.handleDeleteBook}
                     id={book.id}
                     title={book.title} 
                     genre={book.genre} 
