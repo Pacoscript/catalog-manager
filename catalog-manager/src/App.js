@@ -16,7 +16,6 @@ class App extends Component {
       <div className='App'>
         <Layout>
           <Route exact path='/' render={() => <Catalog />}/>
-          <Route path='/catalog' render={() => <Catalog />}/>
           <Route path='/editBook/:id' render={props => <EditBook id={props.match.params.id} />}/>
           <Route path='/newBook' render={() => <NewBook />}/>
           <Route path='/genres' render={() => <Genres />}/>

@@ -35,7 +35,7 @@ class EditBook extends Component {
         event.preventDefault()
         try{
             logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
-            this.props.history.push('/catalog')
+            this.props.history.push('/')
         }
         catch(err){this.setState({ error: err.message })}
         

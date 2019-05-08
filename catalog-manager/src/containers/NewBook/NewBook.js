@@ -31,7 +31,7 @@ class NewBook extends Component {
         try{
             event.preventDefault()
             logic.createBook(this.state.title, this.state.genre, this.state.prize)
-            this.props.history.push('/catalog')
+            this.props.history.push('/')
         }
         catch(err){this.setState({ error: err.message })}
         
