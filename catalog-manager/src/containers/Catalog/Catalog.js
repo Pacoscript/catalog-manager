@@ -22,7 +22,7 @@ class Catalog extends Component {
 
     handleDeleteBook = (id) =>{
         logic.deleteBook(id)
-        return this.props.history.push('/catalog')
+        return this.props.history.push('/')
     }
 
     handleGenreChange = (event) => {

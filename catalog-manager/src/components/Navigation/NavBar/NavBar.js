@@ -6,7 +6,7 @@ class NavBar extends Component{
     handleGoCatalog = (event) => {
         event.preventDefault()
         this.setState({ error: null})
-        return this.props.history.push('/catalog')
+        return this.props.history.push('/')
     }
     
     handleGoNewBook = (event) => {
