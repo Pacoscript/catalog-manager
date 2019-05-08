@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Error from '../Error/Error'
+import { withRouter } from 'react-router-dom';
+import Error from '../../components/Error/Error'
 import './editBook.css'
 import logic from '../../logic'
 
@@ -34,7 +35,7 @@ class EditBook extends Component {
         event.preventDefault()
         try{
             logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
-            this.props.onGoCatalog(event)
+            this.props.history.push('/catalog')
         }
         catch(err){this.setState({ error: err.message })}
         
@@ -75,4 +76,4 @@ class EditBook extends Component {
     }
 }
 
-export default EditBook
+export default withRouter(EditBook)

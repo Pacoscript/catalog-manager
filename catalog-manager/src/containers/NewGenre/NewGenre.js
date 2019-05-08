@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Error from '../Error/Error'
+import { withRouter } from 'react-router-dom';
+import Error from '../../components/Error/Error'
 import './newGenre.css'
 import logic from '../../logic'
 
@@ -15,7 +16,7 @@ class NewGenre extends Component {
         try{
             event.preventDefault()
             await logic.createGenre(this.state.genre)
-            this.props.onGoGenres()
+            this.props.history.push('/genres')
         }
         catch(err){this.setState({ error: err.message })}
     }
@@ -39,4 +40,4 @@ class NewGenre extends Component {
     }
 }
 
-export default NewGenre
+export default withRouter(NewGenre)
