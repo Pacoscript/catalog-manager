@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import Error from '../../components/Error/Error'
 import './newGenre.css'
 import logic from '../../logic'
@@ -39,4 +40,4 @@ class NewGenre extends Component {
     }
 }
 
-export default NewGenre
+export default withRouter(NewGenre)

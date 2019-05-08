@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import Error from '../../components/Error/Error'
 import './editBook.css'
 import logic from '../../logic'
@@ -75,4 +76,4 @@ class EditBook extends Component {
     }
 }
 
-export default EditBook
+export default withRouter(EditBook)

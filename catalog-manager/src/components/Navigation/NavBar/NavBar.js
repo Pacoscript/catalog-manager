@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { withRouter } from 'react-router-dom';
 import './navBar.css'
 
 class NavBar extends Component{
@@ -55,4 +56,4 @@ class NavBar extends Component{
     }
 }
 
-export default NavBar
+export default withRouter(NavBar)

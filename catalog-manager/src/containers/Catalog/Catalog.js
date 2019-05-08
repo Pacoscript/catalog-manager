@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import './catalog.css'
 import logic from '../../logic'
 import Book from '../../components/Book/Book'
@@ -62,4 +63,4 @@ class Catalog extends Component {
 
 }
 
-export default Catalog
+export default withRouter(Catalog)
