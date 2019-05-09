@@ -3,9 +3,18 @@ import { withRouter } from 'react-router-dom';
 import Error from '../../components/Error/Error'
 import './editBook.css'
 import logic from '../../logic'
+import Loader from 'react-loader-spinner'
 
 class EditBook extends Component {
-    state = {error: null, genres: null, id: this.props.id, title: '', genre: null, prize: ''}
+    state = {
+        error: null, 
+        genres: null, 
+        id: this.props.id, 
+        title: '', 
+        genre: null, 
+        prize: '',
+        loading: true
+    }
 
     componentDidMount = () => {
         const genres = logic.genres
@@ -14,6 +23,8 @@ class EditBook extends Component {
         this.setState ({genres})
         this.setState({id})
         this.setState({title:book.title, genre:book.genre, prize:book.prize})
+        debugger
+        this.setState({loading: false})
     }
 
     handleTitleChange = event => {
@@ -46,7 +57,11 @@ class EditBook extends Component {
         const error = this.state.error
 
         return <div className='edit-book'>
-                <div className='edit-book__card'>
+               {!this.state.Loading && <Loader 
+                    type= "Ball-Triangle"
+                    color= "#FF6760"
+                />}
+                {!this.state.Loading && <div className='edit-book__card'>
                     <h3>MODIFY BOOK</h3>
                     {error && <Error message={error} />}
                     <form onSubmit={this.handleSaveBook}>
@@ -70,7 +85,7 @@ class EditBook extends Component {
                             <button type='submit' value='Save Changes'>Save</button>
                         </div>
                     </form>
-                </div>     
+                </div>}  
             </div>
     
     }
