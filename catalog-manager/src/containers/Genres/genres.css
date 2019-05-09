@@ -11,4 +11,8 @@
   margin: 10px;
   outline: none; }
 
+.genres button:hover {
+  background-color: #DA3320;
+  cursor: pointer; }
+
 /*# sourceMappingURL=genres.css.map */
