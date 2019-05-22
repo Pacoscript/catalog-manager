@@ -21,4 +21,8 @@
   border-radius: 15px;
   outline: none; }
 
+.card__buttons button:hover {
+  background-color: #DA3320;
+  cursor: pointer; }
+
 /*# sourceMappingURL=book.css.map */

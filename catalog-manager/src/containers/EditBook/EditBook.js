@@ -3,9 +3,17 @@ import { withRouter } from 'react-router-dom';
 import Error from '../../components/Error/Error'
 import './editBook.css'
 import logic from '../../logic'
+import Loader from 'react-loader-spinner'
 
 class EditBook extends Component {
-    state = {error: null, genres: null, id: this.props.id, title: '', genre: null, prize: ''}
+    state = {
+        error: null, 
+        genres: null, 
+        id: this.props.id, 
+        title: '', 
+        genre: null, 
+        prize: ''
+    }
 
     componentDidMount = () => {
         const genres = logic.genres
@@ -70,7 +78,7 @@ class EditBook extends Component {
                             <button type='submit' value='Save Changes'>Save</button>
                         </div>
                     </form>
-                </div>     
+                </div>
             </div>
     
     }
