@@ -12,8 +12,7 @@ class EditBook extends Component {
         id: this.props.id, 
         title: '', 
         genre: null, 
-        prize: '',
-        loading: true
+        prize: ''
     }
 
     componentDidMount = () => {
@@ -23,8 +22,6 @@ class EditBook extends Component {
         this.setState ({genres})
         this.setState({id})
         this.setState({title:book.title, genre:book.genre, prize:book.prize})
-        debugger
-        this.setState({loading: false})
     }
 
     handleTitleChange = event => {
@@ -57,11 +54,7 @@ class EditBook extends Component {
         const error = this.state.error
 
         return <div className='edit-book'>
-               {!this.state.Loading && <Loader 
-                    type= "Ball-Triangle"
-                    color= "#FF6760"
-                />}
-                {!this.state.Loading && <div className='edit-book__card'>
+                <div className='edit-book__card'>
                     <h3>MODIFY BOOK</h3>
                     {error && <Error message={error} />}
                     <form onSubmit={this.handleSaveBook}>
@@ -85,7 +78,7 @@ class EditBook extends Component {
                             <button type='submit' value='Save Changes'>Save</button>
                         </div>
                     </form>
-                </div>}  
+                </div>
             </div>
     
     }
