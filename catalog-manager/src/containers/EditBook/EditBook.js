@@ -12,7 +12,8 @@ class EditBook extends Component {
         id: this.props.id, 
         title: '', 
         genre: null, 
-        prize: ''
+        prize: '',
+        loading: false
     }
 
     componentDidMount = () => {
@@ -40,21 +41,26 @@ class EditBook extends Component {
     }
 
     handleSaveBook = (event) => {
-        event.preventDefault()
+        this.setState({loading: true})
+        setTimeout(()=>{
+            this.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
+        },1000)
+    }
+
+    modifyBook = (id, title, genre, prize) => {
         try{
-            logic.modifyBook(this.state.id, this.state.title, this.state.genre, this.state.prize)
+            logic.modifyBook(id, title, genre, prize)
             this.props.history.push('/')
         }
         catch(err){this.setState({ error: err.message })}
-        
-        
     }
 
     render() {
         const error = this.state.error
 
         return <div className='edit-book'>
-                <div className='edit-book__card'>
+                {this.state.loading && <Loader />}
+                {!this.state.loading && <div className='edit-book__card'>
                     <h3>MODIFY BOOK</h3>
                     {error && <Error message={error} />}
                     <form onSubmit={this.handleSaveBook}>
@@ -78,7 +84,7 @@ class EditBook extends Component {
                             <button type='submit' value='Save Changes'>Save</button>
                         </div>
                     </form>
-                </div>
+                </div>}
             </div>
     
     }

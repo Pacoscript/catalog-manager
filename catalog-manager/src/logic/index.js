@@ -6,10 +6,7 @@ const logic = {
 
     genres: genres,
 
-    delay(){
-        const limit = Date.now()+1000
-        while (Date.now()<limit){}
-    },
+   
 
     listCatalog(genre) {
         validate([{ key: 'genre', value: genre, type: String, optional: false }])
@@ -18,12 +15,12 @@ const logic = {
         const list = logic.books.filter((book)=>{
             return book.genre === genre
         })
-        logic.delay()
+        
         return list
     },
 
     listGenres(){  
-        logic.delay()
+        
         return logic.genres
     },
 
@@ -33,7 +30,7 @@ const logic = {
             { key: 'genre', value: genre, type: String, optional: false },
             { key: 'prize', value: prize, type: String, optional: false },
             ])
-        logic.delay()
+        
         logic.books.push({id:('book-'+Date.now()), title:title, genre:genre, prize:prize})
     },
 
@@ -44,7 +41,7 @@ const logic = {
             { key: 'genre', value: genre, type: String, optional: false },
             { key: 'prize', value: prize, type: String, optional: false },
             ])
-        logic.delay()
+        
         let bookToEdit = logic.searchById(id)
         bookToEdit.title=title
         bookToEdit.genre=genre
@@ -54,13 +51,13 @@ const logic = {
 
     createGenre(genre){
         validate([{ key: 'genre', value: genre, type: String, optional: false }])
-        logic.delay()
+        
         logic.genres.push({id: ('genre-'+Date.now()), name:genre})
     },
 
     deleteGenre(id){
         validate([{ key: 'id', value: id, type: String, optional: false }])
-        logic.delay()
+        
         const index = logic.genres.findIndex((genre)=>{
             return genre.id === id
         })
@@ -72,13 +69,13 @@ const logic = {
         const bookToEdit = logic.books.find((book)=>{
             return book.id === id
         })
-        logic.delay()
+        
         return bookToEdit
     }
 
     ,deleteBook (id){
         validate([{ key: 'id', value: id, type: String, optional: false }])
-        logic.delay()
+        
         const index = logic.books.findIndex((book)=>{
             return book.id === id
         })
