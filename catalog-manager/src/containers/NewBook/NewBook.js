@@ -3,9 +3,16 @@ import { withRouter } from 'react-router-dom';
 import Error from '../../components/Error/Error'
 import './newBook.css'
 import logic from '../../logic'
+import Loader from 'react-loader-spinner'
 
 class NewBook extends Component {
-    state = {error: null, genres: null, title: null, genre: null, prize: null}
+    state = {
+        error: null, 
+        genres: null, 
+        title: null, 
+        genre: null, 
+        prize: null, 
+        loading: false}
 
     componentDidMount = async () => {
         const genres = await logic.genres
@@ -28,19 +35,26 @@ class NewBook extends Component {
     }
 
     handleCreateBook = (event) => {
+        this.setState({loading: true})
+        setTimeout(()=>{
+            this.create(this.state.title, this.state.genre, this.state.prize)
+        }, 1000)
+    }
+
+    create = (title, genre, prize) => {
         try{
-            event.preventDefault()
-            logic.createBook(this.state.title, this.state.genre, this.state.prize)
+            logic.createBook(title, genre, prize)
             this.props.history.push('/')
         }
         catch(err){this.setState({ error: err.message })}
-        
     }
 
     render() {
         const error = this.state.error
-
-        return <div className='new-book'>
+        let newBook = null
+        if (this.state.loading === false) {
+            newBook =
+            <div className='new-book'>
                     <h3 className='new-book__title'>ADD A NEW BOOK</h3>
                     {error && <Error message={error} />}
                     <form className='new-book__form'onSubmit={this.handleCreateBook}>
@@ -65,7 +79,14 @@ class NewBook extends Component {
                         </div>
                     </form>
                 </div>     
-            
+        } else {
+            newBook =
+            <div style={{display:'flex', justifyContent: 'center'}}>
+                <Loader />
+            </div>   
+        }
+
+        return newBook
     
     }
 }

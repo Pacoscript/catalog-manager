@@ -3,9 +3,14 @@ import { withRouter } from 'react-router-dom';
 import Error from '../../components/Error/Error'
 import './newGenre.css'
 import logic from '../../logic'
+import Loader from 'react-loader-spinner'
 
 class NewGenre extends Component {
-    state = {error: null, genre: null}
+    state = {
+        error: null, 
+        genre: null,
+        loading: false
+    }
 
     handleChangeGenre = (event)=>{
         const genre = event.target.value
@@ -13,9 +18,16 @@ class NewGenre extends Component {
     }
 
     handleNewGenre = async (event) => {
+        this.setState({loading: true})
+        setTimeout(()=>{
+        this.newGenre(this.state.genre)
+        },1000)
+        
+    }
+    
+    newGenre = (genre) => {
         try{
-            event.preventDefault()
-            await logic.createGenre(this.state.genre)
+            logic.createGenre(genre)
             this.props.history.push('/genres')
         }
         catch(err){this.setState({ error: err.message })}
@@ -23,8 +35,10 @@ class NewGenre extends Component {
 
     render() {
         const error = this.state.error
-
-        return <div className='new-genre'>
+        let newGenre = null
+        if(this.state.loading === false) {
+            newGenre = 
+            <div className='new-genre'>
                 <h3>ADD A NEW GENRE</h3>
                 {error && <Error message={error} />}
                 <form onSubmit={this.handleNewGenre}>
@@ -37,6 +51,14 @@ class NewGenre extends Component {
                     </div>
                 </form>      
             </div>    
+        } else {
+            newGenre = 
+            <div className='new-genre'>
+                <Loader />
+            </div>
+        }
+
+        return newGenre
     }
 }
 

@@ -1,6 +1,8 @@
 .new-book {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  justify-content: center; 
+  }
 
 .new-book__title {
   padding: 20px 0px;

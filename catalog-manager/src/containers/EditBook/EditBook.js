@@ -57,10 +57,11 @@ class EditBook extends Component {
 
     render() {
         const error = this.state.error
-
-        return <div className='edit-book'>
-                {this.state.loading && <Loader />}
-                {!this.state.loading && <div className='edit-book__card'>
+        let editBook = null
+        if(this.state.loading === false){
+            editBook = 
+            <div className='edit-book'>
+                <div className='edit-book__card'>
                     <h3>MODIFY BOOK</h3>
                     {error && <Error message={error} />}
                     <form onSubmit={this.handleSaveBook}>
@@ -84,8 +85,17 @@ class EditBook extends Component {
                             <button type='submit' value='Save Changes'>Save</button>
                         </div>
                     </form>
-                </div>}
+                </div>
             </div>
+        } else {
+            editBook = 
+            <div className='edit-book'>
+                <Loader />
+            </div>
+        }
+
+        return editBook
+            
     
     }
 }
