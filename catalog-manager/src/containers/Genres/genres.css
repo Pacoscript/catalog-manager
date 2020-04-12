@@ -1,0 +1,18 @@
+.genres div {
+  max-width: 400px;
+  margin: auto; }
+
+.genres button {
+  background-color: #FF6760;
+  border: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  margin: 10px;
+  outline: none; }
+
+.genres button:hover {
+  background-color: #DA3320;
+  cursor: pointer; }
+
+/*# sourceMappingURL=genres.css.map */
